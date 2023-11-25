@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.headerContainer {
+  background-image: url("https://images.unsplash.com/photo-1551368321-dddf8a05c459?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: rgba(128, 126, 126, 0.5);
+  border-bottom: 1px solid #ccc;
+}
+.nav-link {
+  color: white;
+}
+.h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+.loginFormContainer,
+.createAccountContainer {
+  background-image: url("https://source.unsplash.com/collection/483251");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+}
+.loginForm,
+.createAccountForm {
+  width: 50%;
+  background-color: rgba(247, 247, 247, 0.8);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.loginForm button {
+  margin: 1rem;
+  padding: 0.5rem 2rem;
+}
+.loginForm ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.loginForm li {
+  list-style: none;
+}
+.loginForm label,
+.createAccountContainer label {
+  margin: 1rem;
+  font-size: 1rem;
+
+  letter-spacing: 1px;
+}
+.loginForm a {
+  text-decoration: none;
+  color: black;
+}
+.loginForm input,
+.createAccountContainer input {
+  border-radius: 5px;
+  border-color: #dee2e6;
+  padding: 0.5rem 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
