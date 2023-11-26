@@ -21,7 +21,7 @@ const MainPage = () => {
           <label htmlFor="latitude">Search By latitude </label>
           <input type="number" id="latitude" />
         </div>
-        <p>
+        <p className="main-paragraph">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
           enim repellat facilis iste itaque dolorum molestiae suscipit
           blanditiis, sapiente velit nisi maiores corporis doloribus, tempore
