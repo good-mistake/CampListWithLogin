@@ -36,6 +36,9 @@
     transform: rotate(360deg);
   }
 } */
+li {
+  list-style: none;
+}
 .img {
   background-color: red;
   background-origin: border-box;
@@ -52,8 +55,8 @@
 }
 
 .searchInMain,
-h2,
-p {
+.headerMain,
+.main-paragraph {
   padding: 15px;
   margin: 2px;
   text-align: center;

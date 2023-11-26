@@ -17,42 +17,49 @@ const CreateAccount = ({ onCreate }) => {
   //       [name]: value,
   //     }));
   //   };
-  const handleFirstNameChange = (e) => {
+  const onChange = (e) => {
+    const { name, value } = e.target;
     setUser((prev) => ({
       ...prev,
-      firstName: e.target.value,
+      [name]: value,
     }));
   };
-  const handleEmailChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      email: e.target.value,
-    }));
-  };
-  const handleUserNameChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      userName: e.target.value,
-    }));
-  };
-  const handlePasswordChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      password: e.target.value,
-    }));
-  };
-  const handleLastNameChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      lastName: e.target.value,
-    }));
-  };
-  const handleConfirmPasswordChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      confirmPassword: e.target.value,
-    }));
-  };
+  // const handleFirstNameChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     firstName: e.target.value,
+  //   }));
+  // };
+  // const handleEmailChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     email: e.target.value,
+  //   }));
+  // };
+  // const handleUserNameChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     userName: e.target.value,
+  //   }));
+  // };
+  // const handlePasswordChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     password: e.target.value,
+  //   }));
+  // };
+  // const handleLastNameChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     lastName: e.target.value,
+  //   }));
+  // };
+  // const handleConfirmPasswordChange = (e) => {
+  //   setUser((prev) => ({
+  //     ...prev,
+  //     confirmPassword: e.target.value,
+  //   }));
+  // };
   const handleCreate = (e) => {
     e.preventDefault();
     const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -90,7 +97,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="firstName"
                 placeholder="First Name"
-                onChange={handleFirstNameChange}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -104,7 +111,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="lastName"
                 placeholder="Last Name"
-                onChange={handleLastNameChange}
+                onChange={onChange}
               />
             </div>
           </div>{" "}
@@ -116,7 +123,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="email"
                 id="Email"
                 placeholder="Email"
-                onChange={handleEmailChange}
+                onChange={onChange}
               />
             </div>
           </div>{" "}
@@ -130,7 +137,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="userName"
                 placeholder="User Name"
-                onChange={handleUserNameChange}
+                onChange={onChange}
               />
             </div>
           </div>{" "}
@@ -144,7 +151,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="password"
                 id="inputPassword3"
                 placeholder="Password"
-                onChange={handlePasswordChange}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -158,7 +165,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="password"
                 id="confirmedPassword"
                 placeholder="Confirm Password"
-                onChange={handleConfirmPasswordChange}
+                onChange={onChange}
               />
             </div>
           </div>

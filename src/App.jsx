@@ -9,6 +9,7 @@ import MainPage from "./MainPage";
 import CreateAccount from "./CreateAccount";
 import UserInfo from "./UserInfo";
 import CampList from "./CampList";
+import CampListItem from "./CampListItem";
 console.log(data[0].image);
 function App() {
   const [createAccount, setCreateAccount] = useState(false);
@@ -30,6 +31,11 @@ function App() {
         <Route path="/UserInfo" component={UserInfo} element={<UserInfo />} />
         <Route path="/Login" component={Login} element={<Login />} />
         <Route path="/CampList" component={CampList} element={<CampList />} />
+        <Route
+          path="/campItem/:id"
+          component={CampListItem}
+          element={<CampListItem />}
+        />
       </Routes>
     </Router>
   );
