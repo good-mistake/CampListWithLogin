@@ -4,6 +4,7 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 const CampList = () => {
   const [data, setData] = useState([]);
+  const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,17 +23,31 @@ const CampList = () => {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    const campList = JSON.parse(localStorage.getItem("newCampList")) || [];
+
+    setUserData(
+      campList.map((e) => {
+        return e;
+      })
+    );
+  }, []);
+
   return (
     <>
       <Header />
       <div className="card-container">
-        {data
-          ? data.map((e) => {
-              console.log(e);
+        {data || userData
+          ? [...userData, ...data].map((e) => {
+              // console.log(e);
               return (
                 <div key={e.id} className="card">
                   {e.images && e.images.length > 0 ? (
-                    <img src={e.images[0].url} alt="" className="card-img" />
+                    <img
+                      src={e.images[0].url || e.images}
+                      alt=""
+                      className="card-img"
+                    />
                   ) : (
                     "no image found"
                   )}
@@ -44,20 +59,17 @@ const CampList = () => {
                         : e.description}
                       ...
                     </p>
-                    {e.fees && e.fees.length > 0 ? (
-                      <div className="fee">
-                        Price: {e.fees[0].cost}$
-                        <Link
-                          to={`/campItem/${e.id}`}
-                          className="btn btn-primary"
-                          key={e.id}
-                        >
-                          Click to see more
-                        </Link>
-                      </div>
-                    ) : (
-                      "no fees found"
-                    )}
+
+                    <div className="fee">
+                      Price: {e.fees[0]?.cost || "No fees Found"}$
+                      <Link
+                        to={`/campItem/${e.id}`}
+                        className="btn btn-primary"
+                        key={e.id}
+                      >
+                        Click to see more
+                      </Link>
+                    </div>
                   </div>
                 </div>
               );

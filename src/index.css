@@ -1,12 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
 
+  font-weight: 500;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -84,7 +92,7 @@ code {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  margin-top: 1rem;
+  margin: 1rem 2rem;
 }
 .card {
   border: 1px solid #ccc;
@@ -164,3 +172,30 @@ code {
 .reservationBtn {
   padding: 1rem;
 }
+.feeDescription {
+  word-wrap: break-word;
+}
+.containerInDashboard {
+  display: flex;
+  margin: 1rem;
+  position: relative;
+}
+.userInformation {
+  text-align: center;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 40%;
+  height: fit-content;
+}
+.userInformation img {
+  width: 65%;
+  border-radius: 50%;
+  margin: 10px;
+}
+/* .selectOptions {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+} */

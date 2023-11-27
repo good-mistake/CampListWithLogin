@@ -7,8 +7,14 @@ const CampListItem = () => {
   const [data, setData] = useState(null);
   const { id } = useParams();
   const [changeImg, setChangeImg] = useState(0);
+  // const [userData, setUserData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
+      const campList = JSON.parse(localStorage.getItem("newCampList")) || [];
+
+      const userData = campList.find((e) => e.id === id);
+      console.log(userData.address.city);
       try {
         const res = await fetch(
           "https://developer.nps.gov/api/v1/campgrounds?api_key=Lcp9vGjaQDhqdWrDLHpgycWcdg6m5dzjoy6YS6Vy"
@@ -18,21 +24,32 @@ const CampListItem = () => {
         }
         const datas = await res.json();
         const idData = datas.data.find((e) => e.id === id);
-        setData(idData);
+        setData({
+          ...idData,
+          ...userData,
+        });
       } catch (e) {
         console.log("You had this error on fetchin data:", e);
       }
     };
     fetchData();
   }, [id]);
+
   const onPrevImg = () => {
     setChangeImg((prev) => (prev < data.images.length - 1 ? prev + 1 : 0));
   };
   const onNextImg = () => {
     setChangeImg((next) => (next > 0 ? next - 1 : data.images.length - 1));
   };
-  //   const findCamp = data.find((e) => e.id === camp);
-  console.log(data);
+  // useEffect(() => {
+  //   const campList = JSON.parse(localStorage.getItem("newCampList")) || [];
+
+  //   const datas = campList.map((e) => {
+  //     return e;
+  //   });
+  //   const idData = datas.find((e) => e.id === id);
+  //   setData(idData);
+  // }, []);
   return (
     <>
       <Header />
@@ -44,7 +61,7 @@ const CampListItem = () => {
               <div class="carousel-item active">
                 {data.images ? (
                   <img
-                    src={data.images[changeImg].url}
+                    src={data.images[changeImg].url || data.images}
                     alt="Nothing Found"
                     className="d-block w-100 campItemImg"
                   ></img>
@@ -85,33 +102,33 @@ const CampListItem = () => {
             <p className="campDescription">{data.description}</p>
             <div className="campInfo">
               <ul>
-                <li>
-                  {data.addresses ? (
-                    <li>
-                      Address:{" "}
-                      {`${data.addresses[0]?.city},${data.addresses[0]?.line1},${data.addresses[0]?.postalCode},${data.addresses[0]?.stateCode}`}
-                    </li>
-                  ) : (
-                    "No address"
-                  )}
-                </li>
+                {data.addresses || data.address ? (
+                  <li>
+                    Address:{" "}
+                    {`${data.address?.city || data.addresses[0]?.city},
+  ${data.address?.line1 || data.addresses[0]?.line1},
+  ${data.address?.postalCode || data.addresses[0]?.postalCode},
+  ${data.address?.stateCode || data.addresses[0]?.stateCode}`}
+                  </li>
+                ) : (
+                  "No address"
+                )}
+
                 <li>Camp site: {data.campsites?.totalSites}</li>
                 <li>Electrical hookups: {data.campsites?.electricalHookups}</li>
 
                 {data.amenities ? (
-                  <li>
+                  <>
                     {" "}
                     <li>Camp Store: {data.amenities.campStore}</li>
                     <li>
                       Fire Wood for sale: {data.amenities.firewoodForSale}
                     </li>
-                    <li>
-                      {data.amenities.toilets ? (
-                        <li> Toilets: {data.amenities.toilets[0]}</li>
-                      ) : (
-                        "No bathroom"
-                      )}
-                    </li>
+                    {data.amenities.toilets ? (
+                      <li> Toilets: {data.amenities.toilets[0]}</li>
+                    ) : (
+                      "No bathroom"
+                    )}
                     <li>Shower: {data.amenities.showers}</li>
                     <li>
                       Recycling: {data.amenities.trashRecyclingCollection}
@@ -122,7 +139,7 @@ const CampListItem = () => {
                       Cellphone reception: {data.amenities.cellPhoneReception}
                     </li>{" "}
                     <li>Laundry: {data.amenities.laundry}</li>
-                  </li>
+                  </>
                 ) : (
                   "No Amenities found"
                 )}
@@ -133,7 +150,7 @@ const CampListItem = () => {
               {" "}
               <div>{data.fees[0]?.title}</div>
               <div>Price: {data.fees[0]?.cost}$</div>
-              <div>{data.fees[0]?.description}</div>
+              <div className="feeDesxription">{data.fees[0]?.description}</div>
               <div>{data.reservationInfo}</div>{" "}
               <div>{data.weatherOverview}</div>
               <Link

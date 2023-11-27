@@ -41,7 +41,7 @@ function Header() {
                     Camp Lists
                   </a>
                 </li>{" "}
-                <li className="nav-item">
+                <div className="nav-item">
                   {loggedInUserId ? (
                     <li>
                       <a className="nav-link" href="/UserInfo">
@@ -53,7 +53,7 @@ function Header() {
                       Login
                     </a>
                   )}
-                </li>
+                </div>
               </ul>
             </div>
           </div>{" "}

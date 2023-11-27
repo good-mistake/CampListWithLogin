@@ -1,8 +1,13 @@
 import React from "react";
 import Header from "./Header";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const CreateAccount = ({ onCreate }) => {
+  const nav = useNavigate();
   const [user, setUser] = useState({
+    profilePhoto: "",
+    number: "",
+    address: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -17,8 +22,7 @@ const CreateAccount = ({ onCreate }) => {
   //       [name]: value,
   //     }));
   //   };
-  const onChange = (e) => {
-    const { name, value } = e.target;
+  const onChange = (name, value) => {
     setUser((prev) => ({
       ...prev,
       [name]: value,
@@ -81,6 +85,7 @@ const CreateAccount = ({ onCreate }) => {
     existingUsers.push({ id: userId, ...user });
     localStorage.setItem("users", JSON.stringify(existingUsers));
     onCreate();
+    nav("/");
   };
   return (
     <>
@@ -97,7 +102,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="firstName"
                 placeholder="First Name"
-                onChange={onChange}
+                onChange={(e) => onChange("firstName", e.target.value)}
               />
             </div>
           </div>
@@ -111,7 +116,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="lastName"
                 placeholder="Last Name"
-                onChange={onChange}
+                onChange={(e) => onChange("lastName", e.target.value)}
               />
             </div>
           </div>{" "}
@@ -123,7 +128,43 @@ const CreateAccount = ({ onCreate }) => {
                 type="email"
                 id="Email"
                 placeholder="Email"
-                onChange={onChange}
+                onChange={(e) => onChange("email", e.target.value)}
+              />
+            </div>
+          </div>{" "}
+          <div className="">
+            <label htmlFor="Number">Number</label>
+            <div className="">
+              <input
+                value={user.number}
+                type="number"
+                id="Number"
+                placeholder="Number"
+                onChange={(e) => onChange("number", e.target.value)}
+              />
+            </div>
+          </div>{" "}
+          <div className="">
+            <label htmlFor="Address">Address</label>
+            <div className="">
+              <input
+                value={user.address}
+                type="text"
+                id="Address"
+                placeholder="Address"
+                onChange={(e) => onChange("address", e.target.value)}
+              />
+            </div>
+          </div>{" "}
+          <div className="">
+            <label htmlFor="profilePhoto">Profile Photo URl:</label>
+            <div className="">
+              <input
+                value={user.profilePhoto}
+                type="profilePhoto"
+                id="profilePhoto"
+                placeholder="Profile Photo"
+                onChange={(e) => onChange("profilePhoto", e.target.value)}
               />
             </div>
           </div>{" "}
@@ -137,7 +178,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="text"
                 id="userName"
                 placeholder="User Name"
-                onChange={onChange}
+                onChange={(e) => onChange("userName", e.target.value)}
               />
             </div>
           </div>{" "}
@@ -151,7 +192,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="password"
                 id="inputPassword3"
                 placeholder="Password"
-                onChange={onChange}
+                onChange={(e) => onChange("password", e.target.value)}
               />
             </div>
           </div>
@@ -165,7 +206,7 @@ const CreateAccount = ({ onCreate }) => {
                 type="password"
                 id="confirmedPassword"
                 placeholder="Confirm Password"
-                onChange={onChange}
+                onChange={(e) => onChange("confirmPassword", e.target.value)}
               />
             </div>
           </div>
